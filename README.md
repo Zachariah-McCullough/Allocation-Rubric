@@ -1,87 +1,91 @@
-# Allocation-Rubric #
-Overview
+# Allocation Rubric Processor
 
-This script automates a complex, multi-step process involving the aggregation and analysis of Excel files related to HEGIS Codes (Higher Education General Information Survey). It filters, merges, and calculates various scores—including Instructional Effort, Student Success, and Student Engagement—for specified HEGIS Codes and outputs a clean, benchmarked Excel report.
+## Overview  
+This project automates the aggregation, scoring, and benchmarking of academic data across multiple Excel files tied to HEGIS Codes (Higher Education General Information Survey). It calculates and standardizes metrics related to Instructional Effort, Student Success, and Student Engagement — producing a clean, presentation-ready Excel report.
 
-#### This script eliminates up to two weeks of tedious manual work — transforming what used to take days of repetitive copying, filtering, and formatting across multiple files into a seamless, automated process completed in minutes. ####
+> ⏱️ **Eliminates 1.5 to 2 weeks of manual data processing** — transforming what once required days of copy-pasting and formatting into a seamless operation completed in minutes.
 
-How It Works
-1. User Input for Directory: 
+---
 
-    - You’re prompted to enter the base directory where your Excel files are stored.
-    - The script looks for files with specific naming patterns in that directory.
+## How It Works
 
-2. Filter HEGIS Codes from Instructional FTE Files: 
+### 1. Directory Setup  
+- Prompts user to enter a base folder path  
+- Searches for Excel files based on specific naming patterns
 
-    - Looks for files like INSTRUCTIONAL_FTE_*.xlsx.
-    - Reads the 'Pivot Table NEW CALC FTE' sheet from each.
-    - Filters rows based on a predefined list of HEGIS Codes.
-    - Adds a "STANDARD" row with benchmark values.
-    - Combines everything and saves to FINAL_OUTPUT.xlsx in a sheet named 'Filtered HEGIS Codes'.
+### 2. Filter HEGIS Codes  
+- Parses files like `INSTRUCTIONAL_FTE_*.xlsx`  
+- Extracts rows from the `'Pivot Table NEW CALC FTE'` sheet  
+- Filters by a predefined list of HEGIS Codes  
+- Adds a **"STANDARD" row** for benchmarking  
+- Saves to `FINAL_OUTPUT.xlsx` → `'Filtered HEGIS Codes'` sheet
 
-3. Process Instructional Effort Data (Parts 1 & 2): 
+### 3. Instructional Effort  
+- Reads `INSTRUCTIONAL_EFFORT_PART_1.xlsx` and `_PART_2.xlsx`  
+- Extracts and merges columns from `'Summary Table'` sheets  
+- Calculates total Instructional Effort score  
+- Adds a "STANDARD" benchmark row  
+- Merges results and formats to 2 decimal places
 
-    - Reads INSTRUCTIONAL_EFFORT_PART_1.xlsx and INSTRUCTIONAL_EFFORT_PART_2.xlsx.
-    - Extracts relevant columns from their 'Summary Table' sheets.
-    - Merges both parts on 'HEGIS Code'.
-    - Calculates total instructional effort scores.
-    - Adds a "STANDARD" row (max of each column).
-    - Merges into the 'Filtered HEGIS Codes' sheet.
-    - Formats everything to 2 decimal places.
+### 4. Student Success  
+- Processes `SUCCESS_PART_1.xlsx` and `_PART_2.xlsx`  
+- Merges and calculates Success scores  
+- Adds "STANDARD" row and formats data
 
-4. Process Success Data (Parts 1 & 2): 
+### 5. Student Engagement  
+- Reads `FS_A_updated.xlsx` and `HIP_B.xlsx`  
+- Extracts from `'Flattened Data'` sheets  
+- Merges and calculates Engagement scores  
+- Adds benchmark row and updates report
 
-    - Reads SUCCESS_PART_1.xlsx and SUCCESS_PART_2.xlsx.
-    - Extracts summary data from each.
-    - Merges and calculates total success scores.
-    - Adds a "STANDARD" row.
-    - Appends and formats results into 'Filtered HEGIS Codes'.
+### 6. Final Scoring  
+- Calculates:
+  - **Rubric Total Score**
+  - **Rubric Total Score – HBG**
+  - **Rubric Total Score – USMGC**
 
-5. Process Engagement Data (FS_A and HIP_B): 
+- Standardizes scores relative to "STANDARD" row  
+- Outputs final metrics:
+  - `Rubric Standardized Score`  
+  - `Rubric Standardized Score – HBG`  
+  - `Rubric Standardized Score – USMGC`
 
-    - Reads FS_A_updated.xlsx and HIP_B.xlsx.
-    - Extracts values from 'Flattened Data' sheets.
-    - Combines and calculates engagement scores.
-    - Adds a "STANDARD" row.
-    - Updates and formats the data in 'Filtered HEGIS Codes'.
+- Final results written to `FINAL_OUTPUT.xlsx`
 
-6. Final Calculation of Rubric Total Scores: 
+---
 
-    Sums the Instructional Effort, Success, and Engagement scores into:
+## Key Concepts  
 
-        - Rubric Total Score
-        - Rubric Total Score - HBG
-        - Rubric Total Score - USMGC
+- **🔍 Filtering & Merging**: Combines only the relevant HEGIS Codes across datasets  
+- **📊 Scoring & Benchmarking**: Calculates and standardizes key academic metrics  
+- **⚙️ Excel Automation**: Eliminates the need for manual work across dozens of files  
+- **📈 Reporting-Ready Output**: Produces clean, fully formatted Excel sheets
 
-    Standardizes each score by dividing by the "STANDARD" values.
+---
 
-    Outputs final percentages:
+## What This Script Helps With
 
-        - Rubric Standardized Score
-        - Rubric Standardized Score - HBG
-        - Rubric Standardized Score - USMGC
+✅ Automates aggregation and scoring of HEGIS Code–based academic data  
+✅ Combines multiple performance measures into one unified Excel output  
+✅ Provides benchmark values for comparative program evaluation  
+✅ Saves up to **2 weeks of manual spreadsheet labor**
 
-    Writes all the results back to the Excel file with full formatting.
+---
 
-Key Concepts: 
+## Output  
+**🗂 FINAL_OUTPUT.xlsx**  
+- `Filtered HEGIS Codes`  
+- `Updated HEGIS Codes` *(if applicable)*  
+- Fully calculated and formatted scoring columns
 
-  - Filtering & Merging: Extracts only relevant HEGIS Codes and combines multiple datasets across different files.
-  - Benchmarking: "STANDARD" rows serve as max-value benchmarks for comparison.
-  - Scoring: Calculates both raw and standardized scores to compare programs or departments.
-  - Excel Automation: Eliminates the need for manual copying, formatting, and calculation across spreadsheets.
+---
 
-What This Script Helps With
+## Technologies Used  
+- Python  
+- Pandas  
+- OpenPyXL  
+- pathlib / os
 
-✅ Automates the aggregation and scoring of academic HEGIS Code data
-✅ Combines multiple performance measures into one unified dataset
-✅ Provides clean benchmarks for comparative evaluation
-✅ Produces a fully formatted Excel report ready for presentation or review
+---
 
-Output:
-
-A single, clean Excel file named FINAL_OUTPUT.xlsx
-
-   Sheets include:
-
-     - Filtered HEGIS Codes
-     - Optionally, Updated HEGIS Codes with additional final metrics
+*Designed to empower data-driven decision-making in academic administration through automation and accuracy.*
