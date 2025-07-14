@@ -3,7 +3,7 @@
 ## Overview  
 This project automates the aggregation, scoring, and benchmarking of academic data across multiple Excel files tied to HEGIS Codes (Higher Education General Information Survey). It calculates and standardizes metrics related to Instructional Effort, Student Success, and Student Engagement — producing a clean, presentation-ready Excel report.
 
-> ⏱️ **Eliminates 1.5 to 2 weeks of manual data processing** — transforming what once required days of copy-pasting and formatting into a seamless operation completed in minutes.
+> ⏱️ **Eliminates 1.5 to 2 weeks (60 - 80 hours) of manual data processing** — transforming what once required days of copy-pasting and formatting into a seamless operation completed in minutes.
 
 ---
 
